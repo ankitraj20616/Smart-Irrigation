@@ -1,1 +1,9 @@
-# Smart-Irrigation-
+# Smart-Irrigation
+
+## About
+
+## Team
+
+## WorkFlow Diagram
+
+## Database Schema
