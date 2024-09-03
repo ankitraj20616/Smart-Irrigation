@@ -8,7 +8,7 @@ class Sense_Soil:
         self.board = pyfirmata.Arduino('COM5')
 
         self.sensor_pin_input = self.board.get_pin(f'a:{sensor_pin}:i')
-        self.button_pin = self.board.get_pin(f'd:{button_pin}:i')
+        # self.button_pin = self.board.get_pin(f'd:{button_pin}:i')
 
         # Creating iterator to aviod overflow during continues data reading
         it = pyfirmata.util.Iterator(self.board)
@@ -20,20 +20,27 @@ class Sense_Soil:
     def read_sensor(self):
         sensor_data = self.sensor_pin_input.read()
         if sensor_data is not None:
-            sensor_data *= 1023
+            # sensor_data *= 1023
             return sensor_data
         return None
 
-    def map_to_digital_value(self, sensor_data, analog_min, analog_max, digital_max, digit_min):
-        return (sensor_data - analog_min) * (digital_max - digit_min) // (analog_max - analog_min) + digit_min
+    # def map_to_digital_value(self, sensor_data, analog_min, analog_max, digital_max, digit_min):
+    #     return (sensor_data - analog_min) * (digital_max - digit_min) // (analog_max - analog_min) + digit_min
 
     def run(self):
         while True:
             sensor_data = self.read_sensor()
-            if sensor_data is not None:
-                sensor_digital_data = self.map_to_digital_value(sensor_data, 0, 1023, 255, 0)
-                print(sensor_digital_data)
-                time.sleep(1)
+            if sensor_data > 800 :
+                print("THERE IS NO MOISTURE , WATER IS NEEDED")
+                print(sensor_data)
+            elif sensor_data > 500 and sensor_data < 800 :
+                print("THERE IS SOME MOISTURE")
+                print(sensor_data)
+            elif sensor_data < 500 :
+                print("THERE IS FULL MOISTURE,NO WATER IS NEEDED")
+                print(sensor_data)
+                # sensor_digital_data = self.map_to_digital_value(sensor_data, 0, 1023, 255, 0)
+            time.sleep(1)
 
 if __name__ == "__main__":
     controller = Sense_Soil(1, 8)
