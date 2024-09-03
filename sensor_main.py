@@ -16,8 +16,6 @@ class Sense_Soil:
 
         self.sensor_pin_input.enable_reporting()
 
-    def read_button(self):
-        return self.button_pin.read()
 
     def read_sensor(self):
         sensor_data = self.sensor_pin_input.read()
@@ -31,14 +29,11 @@ class Sense_Soil:
 
     def run(self):
         while True:
-            button_state = self.read_button()
-            if button_state is True:
-                # Button is pressed
-                sensor_data = self.read_sensor()
-                if sensor_data is not None:
-                    sensor_digital_data = self.map_to_digital_value(sensor_data, 0, 1023, 255, 0)
-                    print(sensor_digital_data)
-                    time.sleep(1)
+            sensor_data = self.read_sensor()
+            if sensor_data is not None:
+                sensor_digital_data = self.map_to_digital_value(sensor_data, 0, 1023, 255, 0)
+                print(sensor_digital_data)
+                time.sleep(1)
 
 if __name__ == "__main__":
     controller = Sense_Soil(1, 8)
