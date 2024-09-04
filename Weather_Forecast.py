@@ -1,24 +1,22 @@
 import requests
-class  findCurrentWeather : 
+from GPS import FindCurrentLocation
+class  FindCurrentWeather : 
 
-    # Requesting to gather the IP Information from the Open source API 
-
-    request_data = requests.get('https://ipinfo.io/')
-
-    # Requested data is to stored in JSON Format for accessing of Data
-
-    dataRead=request_data.json() 
-    # print(dataRead)
-
-    #From The data we have read we are taking out the City Location from the JSON format
-    cityCurrentLocation = dataRead['city']
-    print(f"THE CURRENT CITY LOCATION IS : {cityCurrentLocation}")
+    def detectWeather(self):
+        gps = FindCurrentLocation()
+        current_location = gps.locationCordinates()
+        city = current_location.get('city', 'Unknown')
+        state = current_location.get('state', 'Unknown')
+        api_key = '35e3a8dce689acc944efa3ebd0ee84bb'
+        api_url = f'http://api.openweathermap.org/data/2.5/weather?q={city},{state}&APPID={api_key}'
+        
+        api_response = requests.get(api_url)
+        print(api_response.text)
     
-    # Giving the URL Current Location of the city In Open Source Weather Api
-    url = 'https://wttr.in/{}'.format(cityCurrentLocation)
 
-    # Gathering the current city location weather and printing the request data 
-    request_url= requests.get(url)
+    
+    
 
-    print(request_url.text)
-
+if __name__ == "__main__":
+    weatherDetector = FindCurrentWeather()
+    weatherDetector.detectWeather()
