@@ -1,2 +1,4 @@
 pyfirmata
 pyserial
+requests
+
