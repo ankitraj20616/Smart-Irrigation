@@ -11,7 +11,7 @@ class  FindCurrentWeather :
         api_url = f'http://api.openweathermap.org/data/2.5/weather?q={city},{state}&APPID={api_key}'
         
         api_response = requests.get(api_url)
-        print(api_response.text)
+        print(api_response.json())
     
 
     
