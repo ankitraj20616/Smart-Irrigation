@@ -1,6 +1,6 @@
 import pyfirmata
 import time
-
+from Weather_Forecast import FindCurrentWeather
 import pyfirmata.util
 
 class Sense_Soil:
@@ -28,15 +28,21 @@ class Sense_Soil:
         while True:
             sensor_data = self.read_sensor()
             if sensor_data is not None:
+                # Soil Contain no moisture
                 if sensor_data > 700 :
-                    print("WATER IS NEEDED")
-                    print(sensor_data)
-                elif sensor_data > 300 and sensor_data < 700 :
-                    print("THERE IS SOME MOISTURE")
-                    print(sensor_data)
-                elif sensor_data < 300 :
-                    print("NO WATER IS NEEDED")
-                    print(sensor_data)
+                    # print("WATER IS NEEDED")
+                    # print(sensor_data)
+                    chances_of_raining = FindCurrentWeather()
+                    chances_of_raining = chances_of_raining.detectRain()
+                    if chances_of_raining:
+                        print("Soil contain no moisture but rain is going to happen no need to water the plant.")
+                    else:
+                        print("Rain is not going to happen and soil has no moisture, Water the plant")
+                
+                # Soil contain moisture
+                elif sensor_data < 700 :
+                    print("NO WATER IS NEEDED, soil contail moisture")
+                    # print(sensor_data)
             time.sleep(1)
 
 if __name__ == "__main__":

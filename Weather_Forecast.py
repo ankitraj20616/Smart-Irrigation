@@ -23,20 +23,21 @@ class  FindCurrentWeather :
         humidity = weather_data['main']['humidity']
         weather_description = weather_data['weather'][0]['description']
 
+        chances_of_raining = True
+        # Temperature in the surrounding is very high, Water the plant
         if temperature > 30:
-            print("Temperature in the surrounding is very high, Water the plant")
-            return
+            chances_of_raining = False
 
+        # Humidity is very low, Water the plant
         elif humidity < 30:
-            print("Humidity is very low, Water the plant")
-            return
+            chances_of_raining = False
         
+        # Rain is not going to happen now, Water the plant
         elif 'rain' not in weather_description or 'thunderstorm' not in weather_description:
-            print("Rain is not going to happen now, Water the plant")
-            return
-        else:
-            print("You don't have to Water the plant now.")
+            chances_of_raining = False
+
         
+        return chances_of_raining
         
 
     
