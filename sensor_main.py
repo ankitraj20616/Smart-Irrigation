@@ -26,25 +26,28 @@ class Sense_Soil:
 
     def run(self):
         while True:
-            sensor_data = self.read_sensor()
-            if sensor_data is not None:
-                # Soil Contain no moisture
-                if sensor_data > 700 :
-                    # print("WATER IS NEEDED")
-                    # print(sensor_data)
-                    chances_of_raining = FindCurrentWeather()
-                    chances_of_raining = chances_of_raining.detectRain()
-                    if chances_of_raining:
-                        print("Soil contain no moisture but rain is going to happen no need to water the plant.")
-                    else:
-                        print("Rain is not going to happen and soil has no moisture, Water the plant")
-                
-                # Soil contain moisture
-                elif sensor_data < 700 :
-                    print("NO WATER IS NEEDED, soil contail moisture")
-                    # print(sensor_data)
-            time.sleep(1)
-
+            try:
+                sensor_data = self.read_sensor()
+                if sensor_data is not None:
+                    # Soil Contain no moisture
+                    if sensor_data > 700 :
+                        # print("WATER IS NEEDED")
+                        # print(sensor_data)
+                        chances_of_raining = FindCurrentWeather()
+                        chances_of_raining = chances_of_raining.detectRain()
+                        if chances_of_raining:
+                            print("Soil contain no moisture but rain is going to happen no need to water the plant.")
+                        else:
+                            print("Rain is not going to happen and soil has no moisture, Water the plant")
+                    
+                    # Soil contain moisture
+                    elif sensor_data < 700 :
+                        print("NO WATER IS NEEDED, soil contail moisture")
+                        # print(sensor_data)
+                time.sleep(1)
+            except:
+                print("Closing the application")
+                return
 if __name__ == "__main__":
     controller = Sense_Soil(1)
     controller.run()
