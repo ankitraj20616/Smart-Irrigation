@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <span class="bg-animate"></span>
+      <span class="bg-animate2"></span>
+
+      <div class="form-box login" id="login-page">
+        <h2 class="animation" style="--i: 0; --j: 21">Login</h2>
+        <form action="#">
+          <div class="input-box animation" style="--i: 1; --j: 22">
+            <input type="text" id="login-username" required />
+            <label>Username</label>
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box animation" style="--i: 2; --j: 23">
+            <input type="password" id="login-password" required />
+            <label>Password</label>
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <button
+            type="button"
+            class="btn animation"
+            style="--i: 3; --j: 24"
+            id="login-btn"
+          >
+            Login
+          </button>
+          <div class="logreg-link animation" style="--i: 4; --j: 25">
+            <p>
+              Don't have an account?<a
+                href="#"
+                class="register-link"
+                id="show-register"
+                >Sign Up</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="form-box register" id="register-page" style="display: none">
+        <h2 class="animation" style="--i: 17; --j: 0">Sign Up</h2>
+        <form action="#">
+          <div class="input-box animation" style="--i: 18; --j: 1">
+            <input type="text" id="register-username" required />
+            <label>Username</label>
+            <i class="bx bxs-user"></i>
+          </div>
+          <div class="input-box animation" style="--i: 19; --j: 2">
+            <input type="email" id="register-email" required />
+            <label>Email</label>
+            <i class="bx bxs-envelope"></i>
+          </div>
+
+          <div class="input-box animation" style="--i: 20; --j: 3">
+            <input type="password" id="register-password" required />
+            <label>Password</label>
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <button
+            type="button"
+            class="btn animation"
+            style="--i: 21; --j: 4"
+            id="signup-btn"
+          >
+            Sign Up
+          </button>
+          <div class="logreg-link animation" style="--i: 22; --j: 5">
+            <p>
+              Already have an account?<a
+                href="#"
+                class="login-link"
+                id="show-login"
+                >Login</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="home page" id="home-page" style="display: none">
+        <h1>Welcome to the Home Page!</h1>
+        <p id="welcome-message"></p>
+        <div class="home page" id="home-page">
+          <h1>Debug Demons</h1>
+          <p id="welcome-message"></p>
+
+          <h2>Weekly Weather Forecast</h2>
+          <div class="weather-forecast" id="weather-forecast"></div>
+
+          <h2>Soil Moisture</h2>
+          <p>
+            Current soil moisture level: <span id="soil-moisture-level">0</span>
+          </p>
+          <button class="btn" id="check-moisture-btn">
+            Check Soil Condition
+          </button>
+
+          <div id="moisture-modal" class="modal">
+            <div class="modal-content">
+              <span class="close-btn">&times;</span>
+              <p id="modal-message"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

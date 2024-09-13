@@ -36,13 +36,13 @@ class Sense_Soil:
                         chances_of_raining = FindCurrentWeather()
                         chances_of_raining = chances_of_raining.detectRain()
                         if chances_of_raining:
-                            print("Soil contain no moisture but rain is going to happen no need to water the plant.")
+                            print(f"Soil contain no moisture but rain is going to happen no need to water the plant, sensor data: {sensor_data}")
                         else:
-                            print("Rain is not going to happen and soil has no moisture, Water the plant")
+                            print(f"Rain is not going to happen and soil has no moisture, Water the plant, sensor data: {sensor_data}")
                     
                     # Soil contain moisture
                     elif sensor_data < 700 :
-                        print("NO WATER IS NEEDED, soil contail moisture")
+                        print(f"NO WATER IS NEEDED, soil contail moisture, sensor data:{sensor_data}")
                         # print(sensor_data)
                 time.sleep(1)
             except:

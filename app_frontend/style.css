@@ -1,0 +1,240 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    overflow: hidden;
+}
+
+.wrapper {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    clip-path: circle(25% at right 70%);
+    z-index: -1;
+}
+
+.wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    clip-path: circle(20% at 10% 10%);
+    z-index: -1;
+}
+
+h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+h1 {
+    font-size: 3rem;
+    color: white;
+}
+
+
+.input-box {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    color: white;
+    letter-spacing: 1px;
+}
+
+.input-box label {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: white;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.input-box input:focus ~ label,
+.input-box input:valid ~ label {
+    top: 0;
+    left: 20px;
+    font-size: 0.8rem;
+}
+
+.input-box i {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    color: white;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #9b59b6, #71b7e6);
+}
+
+a {
+    color: #71b7e6;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+a:hover {
+    color: #9b59b6;
+}
+
+.logreg-link {
+    margin-top: 20px;
+}
+
+.logreg-link p {
+    font-size: 0.9rem;
+    color: white;
+}
+
+.logreg-link a {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.home.page {
+    padding: 50px 20px;
+}
+
+.home.page h1 {
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.home.page p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 500px) {
+    .wrapper {
+        width: 100%;
+        padding: 30px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    .input-box input {
+        font-size: 0.9rem;
+    }
+}
+
+.weather-forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.weather-forecast .day {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    width: 100px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.weather-forecast .day h3 {
+    font-size: 1.2rem;
+}
+
+.weather-forecast .day p {
+    font-size: 0.9rem;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.close-btn {
+    float: right;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000;
+}
+
+#modal-message {
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 20px;
+}
