@@ -9,7 +9,7 @@ class Farmer(BaseModel):
     lname: Optional[str]
     phone: Optional[str]
     password: Optional[str]
-    created_at: Optional[datetime]
+    created_at: Optional[str]
 
     class Config:
         json_schema_extra = {
@@ -20,7 +20,7 @@ class Farmer(BaseModel):
                 "lname": "Last Name",
                 "phone": "Phone",
                 "password": "Password",
-                "created_at": "Time stamp of creation"
+                "created_at": "Date Time(DD-MM-YY//Time:Min) of creation"
             }
         }
 

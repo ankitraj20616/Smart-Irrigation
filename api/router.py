@@ -51,7 +51,7 @@ def register(new_farmer: Farmer, db: Session = Depends(get_db)):
 
 # Login and receive jwt token
 @router.post("/token")
-def login(login_data: FarmerLogin,db: Session = Depends(get_db)):
+def login_token(login_data: FarmerLogin,db: Session = Depends(get_db)):
     farmers = read_all(db= db)
     for farmer in farmers:
         if farmer.phone == login_data.phone and password_operations.verify_password(login_data.password, farmer.password):
@@ -71,3 +71,18 @@ def protected_route(token: str):
                             detail= "Invalid token",
                             headers={"Authenticate": "Bearer"})
     return {"message": f"Hello, {phone_no}. You have accessed a protected route."}
+
+@router.delete("/delete_account/{phone_no}")
+def delete_account(phone_no: str, db: Session= Depends(get_db)):
+    account = db.query(FarmerModel).filter(FarmerModel.phone == phone_no).first()
+    if account is None:
+        raise HTTPException(status_code= status.HTTP_401_UNAUTHORIZED, detail= "User doesn't exist!")
+    db.query(FarmerModel).filter(FarmerModel.phone == phone_no).delete()
+    db.commit()
+
+# Login
+@router.post("/login")
+def login(login_data: FarmerLogin, db: Session= Depends(get_db)):
+    token = login_token(login_data= login_data, db= db)
+    message= protected_route(token= token)
+    return message
