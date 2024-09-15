@@ -7,6 +7,9 @@ class Settings(BaseSettings):
     
     app_name: str= "Smart Irrigation App"
     DB_URL: str
+    SECRET_KEY: str
+    ALGORITHM: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
 
     class Config:
         env_nested_delimiter = "__"
